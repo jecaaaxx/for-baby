@@ -1,268 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Love Message</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
-      background: linear-gradient(135deg, #0B3D91, #1E3B70);
-      transition: background 1s ease;
-      color: #fff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magical Daily Love Message</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0B3D91, #1E3B70);
+    transition: background 10s ease;
+    color: #fff;
+    text-align: center;
+  }
 
-    h1 {
-      font-size: 2.5em;
-      color: #A3C0F9;
-      margin-bottom: 40px;
-      text-align: center;
-    }
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3em;
+    color: #A3C0F9;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  }
 
-    #message {
-      font-size: 1.6em;
-      padding: 30px;
-      width: 80%;
-      max-width: 500px;
-      text-align: center;
-      border-radius: 25px;
-      background-color: rgba(255,255,255,0.1);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      transition: all 0.5s ease;
-      margin-bottom: 30px;
-      min-height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  #message {
+    font-size: 1.6em;
+    padding: 30px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 25px;
+    background-color: rgba(255,255,255,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.5s ease, box-shadow 1s ease;
+    margin-bottom: 30px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    #message:hover {
-      transform: scale(1.03);
-      background-color: rgba(255,255,255,0.15);
-    }
+  #message:hover {
+    transform: scale(1.03);
+    background-color: rgba(255,255,255,0.15);
+    box-shadow: 0 0 25px #FFD700;
+  }
 
-    button {
-      background-color: #A3C0F9;
-      color: #0B3D91;
-      border: none;
-      padding: 15px 40px;
-      font-size: 1.2em;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
+  button {
+    background-color: #A3C0F9;
+    color: #0B3D91;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease, box-shadow 0.5s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
 
-    button:hover {
-      transform: scale(1.1);
-      background-color: #7FA7E9;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-    }
+  button:hover {
+    transform: scale(1.1);
+    background-color: #7FA7E9;
+    box-shadow: 0 0 20px #FFD700;
+  }
 
-    footer {
-      margin-top: 50px;
-      font-size: 0.9em;
-      color: #C1DFF0;
-    }
+  footer {
+    margin-top: 50px;
+    font-size: 0.9em;
+    color: #C1DFF0;
+  }
 
-    /* Floating hearts */
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: #FF6B6B;
-      transform: rotate(-45deg);
-      opacity: 0.7;
-      animation: floatUp linear infinite;
-    }
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #FF6B6B;
+    transform: rotate(-45deg);
+    opacity: 0.7;
+    animation: floatUp linear infinite;
+  }
 
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: #FF6B6B;
-      border-radius: 50%;
-    }
+  .heart::before, .heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #FF6B6B;
+    border-radius: 50%;
+  }
+  .heart::before { top: -10px; left: 0; }
+  .heart::after { left: 10px; top: 0; }
 
-    .heart::before {
-      top: -10px;
-      left: 0;
-    }
+  @keyframes floatUp {
+    0% { transform: translate(0, 0) rotate(-45deg); opacity: 0.7; }
+    100% { transform: translate(calc(-50px + 100px * var(--randX)), -600px) rotate(-45deg); opacity: 0; }
+  }
 
-    .heart::after {
-      left: 10px;
-      top: 0;
-    }
+  /* Confetti */
+  .confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #FFD700;
+    top: 0;
+    animation: fall 2s linear forwards;
+  }
 
-    @keyframes floatUp {
-      0% { transform: translate(0, 0) rotate(-45deg); opacity: 0.7; }
-      100% { transform: translate(calc(-50px + 100px * var(--randX)), -600px) rotate(-45deg); opacity: 0; }
-    }
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
+  }
 
-    /* Confetti */
-    .confetti {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background-color: #FFD700;
-      top: 0;
-      animation: fall 2s linear forwards;
-    }
+  /* Sparkles */
+  .sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #FFD700;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: sparkleMove linear infinite;
+  }
 
-    @keyframes fall {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
-    }
+  @keyframes sparkleMove {
+    0% { transform: translate(0,0) scale(0.5); opacity: 0.8; }
+    50% { transform: translate(50px, -50px) scale(1); opacity: 0.5; }
+    100% { transform: translate(0,0) scale(0.5); opacity: 0; }
+  }
 
-    /* Hidden heart for secret message */
-    #secretHeart {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background-color: #FF6B6B;
-      transform: rotate(-45deg);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
+  /* Secret heart */
+  #secretHeart {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #FF6B6B;
+    transform: rotate(-45deg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  #secretHeart::before, #secretHeart::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #FF6B6B;
+    border-radius: 50%;
+  }
+  #secretHeart::before { top: -15px; left: 0; }
+  #secretHeart::after { left: 15px; top: 0; }
 
-    #secretHeart::before,
-    #secretHeart::after {
-      content: "";
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background-color: #FF6B6B;
-      border-radius: 50%;
-    }
+  /* Spotify */
+  #spotify-player { margin-top: 30px; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
+  #spotify-player iframe { border-radius: 15px; }
 
-    #secretHeart::before {
-      top: -15px;
-      left: 0;
-    }
-
-    #secretHeart::after {
-      left: 15px;
-      top: 0;
-    }
-  </style>
+  /* Image carousel */
+  #carousel { margin-top: 30px; max-width: 80%; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
+  #carousel img { width: 100%; display: none; border-radius: 15px; }
+  #carousel img.active { display: block; }
+</style>
 </head>
 <body>
-  <h1>Your Daily Love Message</h1>
-  <div id="message">Press the button to see your message for today!</div>
-  <button onclick="showDailyMessage()">Reveal Today’s Message</button>
-  <footer>Made with love, just for you</footer>
+<h1>Your Daily Love Message</h1>
+<div id="message">Press the button to see your message for today!</div>
+<button onclick="showDailyMessage()">Reveal Today’s Message</button>
 
-  <!-- Hidden heart for secret message -->
-  <div id="secretHeart" title="Click me!"></div>
+<!-- Spotify Embed -->
+<div id="spotify-player">
+  <iframe src="https://open.spotify.com/embed/track/3KkXRkHbMCARz0aVfEt68P" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+</div>
 
-  <script>
-    const messages = [
-      "Every moment with you makes me smile.",
-      "You make my world brighter every day.",
-      "Being with you feels like home.",
-      "I love spending time with you more than anything.",
-      "You are my favorite part of every day.",
-      "Your presence makes everything better.",
-      "I feel so lucky to have you in my life.",
-      "Being around you makes me happy in ways words can't describe.",
-      "You are my calm, my joy, my everything.",
-      "I always look forward to seeing you."
-    ];
+<!-- Image Carousel -->
+<div id="carousel">
+  <img src="images/pic1.jpg" class="active" alt="Our Picture 1">
+  <img src="images/pic2.jpg" alt="Our Picture 2">
+  <img src="images/pic3.jpg" alt="Our Picture 3">
+</div>
 
-    const secretMessages = [
-      "You are my secret treasure.",
-      "Thinking of you makes my heart race.",
-      "You are my sweetest secret.",
-      "A little surprise, just for you.",
-      "I love you more than words can say."
-    ];
+<footer>Made with love, just for you</footer>
+<div id="secretHeart" title="Click me!"></div>
 
-    function showDailyMessage() {
-      const messageBox = document.getElementById('message');
+<script>
+const messages = [
+  "Every moment with you makes me smile.",
+  "You make my world brighter every day.",
+  "Being with you feels like home.",
+  "I love spending time with you more than anything.",
+  "You are my favorite part of every day.",
+  "Your presence makes everything better.",
+  "I feel so lucky to have you in my life.",
+  "Being around you makes me happy in ways words can't describe.",
+  "You are my calm, my joy, my everything.",
+  "I always look forward to seeing you."
+];
 
-      const now = new Date();
-      const start = new Date(now.getFullYear(), 0, 0);
-      const diff = now - start;
-      const oneDay = 1000 * 60 * 60 * 24;
-      const dayOfYear = Math.floor(diff / oneDay);
-      const index = dayOfYear % messages.length;
+const secretMessages = [
+  "You are my secret treasure.",
+  "Thinking of you makes my heart race.",
+  "You are my sweetest secret.",
+  "A little surprise, just for you.",
+  "I love you more than words can say."
+];
 
-      messageBox.style.opacity = 0;
-      setTimeout(() => {
-        messageBox.textContent = messages[index];
-        messageBox.style.opacity = 1;
-        triggerConfetti();
-      }, 300);
+function showDailyMessage() {
+  const messageBox = document.getElementById('message');
+  const now = new Date();
+  const start = new Date(now.getFullYear(),0,0);
+  const diff = now - start;
+  const dayOfYear = Math.floor(diff / (1000*60*60*24));
+  const index = dayOfYear % messages.length;
 
-      const angle = (dayOfYear * 37) % 360;
-      document.body.style.background = `linear-gradient(${angle}deg, #0B3D91, #1E3B70)`;
-    }
+  messageBox.style.opacity=0;
+  setTimeout(()=> {
+    messageBox.textContent = messages[index];
+    messageBox.style.opacity=1;
+    triggerConfetti();
+  },300);
 
-    function triggerConfetti() {
-      for (let i = 0; i < 30; i++) {
-        const confetti = document.createElement('div');
-        confetti.classList.add('confetti');
-        confetti.style.left = Math.random() * window.innerWidth + 'px';
-        confetti.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
-        confetti.style.animationDuration = (2 + Math.random()*2) + 's';
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 2000);
-      }
-    }
+  const angle = (dayOfYear*37)%360;
+  document.body.style.background = `linear-gradient(${angle}deg,#0B3D91,#1E3B70)`;
+}
 
-    // Floating hearts
-    setInterval(() => {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.top = window.innerHeight + 'px';
-      heart.style.setProperty('--randX', Math.random());
-      heart.style.animationDuration = (4 + Math.random()*3) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
-    }, 500);
+function triggerConfetti() {
+  for(let i=0;i<30;i++){
+    const confetti=document.createElement('div');
+    confetti.classList.add('confetti');
+    confetti.style.left=Math.random()*window.innerWidth+'px';
+    confetti.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`;
+    confetti.style.animationDuration=(2+Math.random()*2)+'s';
+    document.body.appendChild(confetti);
+    setTimeout(()=>confetti.remove(),2000);
+  }
+}
 
-    // Secret heart setup
-    const secretHeart = document.getElementById('secretHeart');
+// Floating hearts
+setInterval(()=>{
+  const heart=document.createElement('div');
+  heart.classList.add('heart');
+  heart.style.left=Math.random()*window.innerWidth+'px';
+  heart.style.top=window.innerHeight+'px';
+  heart.style.setProperty('--randX', Math.random());
+  heart.style.animationDuration=(4+Math.random()*3)+'s';
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),7000);
+},500);
 
-    function moveSecretHeart() {
-      secretHeart.style.left = Math.random() * (window.innerWidth - 40) + 'px';
-      secretHeart.style.top = Math.random() * (window.innerHeight - 40) + 'px';
-    }
+// Sparkles
+setInterval(()=>{
+  const sparkle=document.createElement('div');
+  sparkle.classList.add('sparkle');
+  sparkle.style.left=Math.random()*window.innerWidth+'px';
+  sparkle.style.top=Math.random()*window.innerHeight+'px';
+  sparkle.style.width=(3+Math.random()*5)+'px';
+  sparkle.style.height=(3+Math.random()*5)+'px';
+  document.body.appendChild(sparkle);
+  setTimeout(()=>sparkle.remove(),2000);
+},300);
 
-    // Move the secret heart every 3 seconds
-    setInterval(moveSecretHeart, 3000);
-    moveSecretHeart();
+// Secret heart
+const secretHeart=document.getElementById('secretHeart');
+function moveSecretHeart(){
+  secretHeart.style.left=Math.random()*(window.innerWidth-40)+'px';
+  secretHeart.style.top=Math.random()*(window.innerHeight-40)+'px';
+}
+setInterval(moveSecretHeart,3000);
+moveSecretHeart();
 
-    secretHeart.addEventListener('click', () => {
-      const now = new Date();
-      const start = new Date(now.getFullYear(), 0, 0);
-      const diff = now - start;
-      const oneDay = 1000 * 60 * 60 * 24;
-      const dayOfYear = Math.floor(diff / oneDay);
-      const index = dayOfYear % secretMessages.length;
+secretHeart.addEventListener('click',()=>{
+  const now = new Date();
+  const start = new Date(now.getFullYear(),0,0);
+  const diff = now-start;
+  const dayOfYear = Math.floor(diff/(1000*60*60*24));
+  const index = dayOfYear % secretMessages.length;
 
-      const messageBox = document.getElementById('message');
-      messageBox.style.opacity = 0;
-      setTimeout(() => {
-        messageBox.textContent = secretMessages[index];
-        messageBox.style.opacity = 1;
-        triggerConfetti();
-      }, 300);
-    });
-  </script>
+  const messageBox=document.getElementById('message');
+  messageBox.style.opacity=0;
+  setTimeout(()=>{
+    messageBox.textContent=secretMessages[index];
+    messageBox.style.opacity=1;
+    triggerConfetti();
+  },300);
+});
+
+// Image carousel
+const carouselImages=document.querySelectorAll('#carousel img');
+let current=0;
+setInterval(()=>{
+  carouselImages[current].classList.remove('active');
+  current=(current+1)%carouselImages.length;
+  carouselImages[current].classList.add('active');
+},5000);
+</script>
 </body>
 </html>
