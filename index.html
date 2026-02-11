@@ -3,183 +3,219 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Magical Daily Love Message</title>
+<title>Magical Love Site</title>
+
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&family=Montserrat:wght@400;500&family=Sacramento&display=swap" rel="stylesheet">
+
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    overflow: hidden;
-    background: linear-gradient(135deg, #0B3D91, #1E3B70);
-    transition: background 10s ease;
-    color: #fff;
-    text-align: center;
-  }
+/* --------- Body & Background --------- */
+body {
+  margin:0;
+  padding:0;
+  min-height:100vh;
+  font-family: 'Montserrat', sans-serif;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background: linear-gradient(135deg,#0B3D91,#1E3B70);
+  transition: background 5s ease;
+  color:#fff;
+}
 
-  h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 3em;
-    color: #A3C0F9;
-    margin-bottom: 40px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-  }
+/* --------- Heading --------- */
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size:3em;
+  margin-bottom:30px;
+  color:#FFD6E0;
+  text-shadow:2px 2px 8px rgba(0,0,0,0.3);
+}
 
-  #message {
-    font-size: 1.6em;
-    padding: 30px;
-    width: 80%;
-    max-width: 500px;
-    text-align: center;
-    border-radius: 25px;
-    background-color: rgba(255,255,255,0.1);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    transition: all 0.5s ease, box-shadow 1s ease;
-    margin-bottom: 30px;
-    min-height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+/* --------- Daily Message --------- */
+#message {
+  font-family: 'Sacramento', cursive;
+  font-size:1.6em;
+  padding:30px;
+  max-width:500px;
+  width:80%;
+  border-radius:25px;
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  margin-bottom:20px;
+  min-height:100px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition: all 0.5s ease, box-shadow 1s ease;
+}
+#message:hover {
+  box-shadow: 0 0 25px #FFD700;
+  transform: scale(1.03);
+}
 
-  #message:hover {
-    transform: scale(1.03);
-    background-color: rgba(255,255,255,0.15);
-    box-shadow: 0 0 25px #FFD700;
-  }
+/* --------- Buttons --------- */
+button {
+  font-family: 'Pacifico', cursive;
+  background-color:#FFD6E0;
+  color:#0B3D91;
+  border:none;
+  padding:15px 40px;
+  font-size:1.2em;
+  border-radius:25px;
+  cursor:pointer;
+  transition: all 0.3s ease, box-shadow 0.5s ease;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  margin:10px;
+}
+button:hover {
+  transform:scale(1.1);
+  box-shadow:0 0 20px #FFD700;
+}
 
-  button {
-    background-color: #A3C0F9;
-    color: #0B3D91;
-    border: none;
-    padding: 15px 40px;
-    font-size: 1.2em;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease, box-shadow 0.5s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  }
+/* --------- Footer --------- */
+footer {
+  margin-top:40px;
+  font-size:0.9em;
+  color:#C1DFF0;
+}
 
-  button:hover {
-    transform: scale(1.1);
-    background-color: #7FA7E9;
-    box-shadow: 0 0 20px #FFD700;
-  }
+/* --------- Floating Hearts --------- */
+.heart {
+  position:absolute;
+  width:20px;
+  height:20px;
+  background-color:#FF6B6B;
+  transform:rotate(-45deg);
+  opacity:0.7;
+  animation: floatUp linear infinite;
+}
+.heart::before,.heart::after{
+  content:"";
+  position:absolute;
+  width:20px;
+  height:20px;
+  background-color:#FF6B6B;
+  border-radius:50%;
+}
+.heart::before{top:-10px;left:0;}
+.heart::after{left:10px;top:0;}
+@keyframes floatUp {
+  0%{transform:translate(0,0) rotate(-45deg); opacity:0.7;}
+  100%{transform:translate(calc(-50px + 100px*var(--randX)),-600px) rotate(-45deg);opacity:0;}
+}
 
-  footer {
-    margin-top: 50px;
-    font-size: 0.9em;
-    color: #C1DFF0;
-  }
+/* --------- Confetti --------- */
+.confetti{
+  position:absolute;
+  width:8px;
+  height:8px;
+  background-color:#FFD700;
+  top:0;
+  animation:fall 2s linear forwards;
+}
+@keyframes fall {
+  0%{transform:translateY(0) rotate(0deg);opacity:1;}
+  100%{transform:translateY(600px) rotate(360deg);opacity:0;}
+}
 
-  /* Floating hearts */
-  .heart {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #FF6B6B;
-    transform: rotate(-45deg);
-    opacity: 0.7;
-    animation: floatUp linear infinite;
-  }
+/* --------- Sparkles --------- */
+.sparkle{
+  position:absolute;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background-color:#FFD700;
+  opacity:0.8;
+  pointer-events:none;
+  animation:sparkleMove linear infinite;
+}
+@keyframes sparkleMove{
+  0%{transform:translate(0,0) scale(0.5); opacity:0.8;}
+  50%{transform:translate(50px,-50px) scale(1); opacity:0.5;}
+  100%{transform:translate(0,0) scale(0.5); opacity:0;}
+}
 
-  .heart::before, .heart::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #FF6B6B;
-    border-radius: 50%;
-  }
-  .heart::before { top: -10px; left: 0; }
-  .heart::after { left: 10px; top: 0; }
+/* --------- Secret Heart --------- */
+#secretHeart{
+  position:absolute;
+  width:30px;
+  height:30px;
+  background-color:#FF6B6B;
+  transform:rotate(-45deg);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+#secretHeart::before,#secretHeart::after{
+  content:"";
+  position:absolute;
+  width:30px;
+  height:30px;
+  background-color:#FF6B6B;
+  border-radius:50%;
+}
+#secretHeart::before{top:-15px;left:0;}
+#secretHeart::after{left:15px;top:0;}
 
-  @keyframes floatUp {
-    0% { transform: translate(0, 0) rotate(-45deg); opacity: 0.7; }
-    100% { transform: translate(calc(-50px + 100px * var(--randX)), -600px) rotate(-45deg); opacity: 0; }
-  }
+/* --------- Spotify --------- */
+#spotify-player{
+  margin-top:20px;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 4px 15px rgba(0,0,0,0.3);
+}
+#spotify-player iframe{border-radius:15px;}
 
-  /* Confetti */
-  .confetti {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: #FFD700;
-    top: 0;
-    animation: fall 2s linear forwards;
-  }
+/* --------- Carousel --------- */
+#carousel{
+  margin-top:20px;
+  max-width:80%;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 4px 15px rgba(0,0,0,0.3);
+}
+#carousel img{
+  width:100%;
+  display:none;
+  border-radius:15px;
+}
+#carousel img.active{
+  display:block;
+}
 
-  @keyframes fall {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
-  }
-
-  /* Sparkles */
-  .sparkle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #FFD700;
-    opacity: 0.8;
-    pointer-events: none;
-    animation: sparkleMove linear infinite;
-  }
-
-  @keyframes sparkleMove {
-    0% { transform: translate(0,0) scale(0.5); opacity: 0.8; }
-    50% { transform: translate(50px, -50px) scale(1); opacity: 0.5; }
-    100% { transform: translate(0,0) scale(0.5); opacity: 0; }
-  }
-
-  /* Secret heart */
-  #secretHeart {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background-color: #FF6B6B;
-    transform: rotate(-45deg);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-  #secretHeart::before, #secretHeart::after {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background-color: #FF6B6B;
-    border-radius: 50%;
-  }
-  #secretHeart::before { top: -15px; left: 0; }
-  #secretHeart::after { left: 15px; top: 0; }
-
-  /* Spotify */
-  #spotify-player { margin-top: 30px; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
-  #spotify-player iframe { border-radius: 15px; }
-
-  /* Image carousel */
-  #carousel { margin-top: 30px; max-width: 80%; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
-  #carousel img { width: 100%; display: none; border-radius: 15px; }
-  #carousel img.active { display: block; }
+/* --------- Mood Tracker --------- */
+#mood-box{
+  margin-top:20px;
+  padding:20px;
+  border-radius:25px;
+  background:rgba(255,255,255,0.1);
+  box-shadow:0 4px 15px rgba(0,0,0,0.3);
+  font-family:'Sacramento', cursive;
+}
+#mood-box button{
+  margin:5px;
+  padding:10px 20px;
+  border-radius:20px;
+  font-size:1em;
+}
 </style>
 </head>
 <body>
-<h1>Your Daily Love Message</h1>
+
+<h1>💖 Magical Love Site 💖</h1>
+
 <div id="message">Press the button to see your message for today!</div>
 <button onclick="showDailyMessage()">Reveal Today’s Message</button>
 
-<!-- Spotify Embed -->
+<!-- Spotify Playlist Embed -->
 <div id="spotify-player">
-  <iframe src="https://open.spotify.com/embed/track/3KkXRkHbMCARz0aVfEt68P" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX7YNlvohZCq6" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 </div>
 
 <!-- Image Carousel -->
@@ -189,10 +225,24 @@
   <img src="images/pic3.jpg" alt="Our Picture 3">
 </div>
 
-<footer>Made with love, just for you</footer>
+<!-- Mood Tracker -->
+<div id="mood-box">
+  How are you feeling today?
+  <div>
+    <button onclick="moodResponse('happy')">😊 Happy</button>
+    <button onclick="moodResponse('love')">💖 In Love</button>
+    <button onclick="moodResponse('cozy')">☕ Cozy</button>
+  </div>
+  <div id="mood-message" style="margin-top:10px;"></div>
+</div>
+
+<!-- Secret Heart -->
 <div id="secretHeart" title="Click me!"></div>
 
+<footer>Made with love, just for you</footer>
+
 <script>
+// --------- Messages ---------
 const messages = [
   "Every moment with you makes me smile.",
   "You make my world brighter every day.",
@@ -214,26 +264,28 @@ const secretMessages = [
   "I love you more than words can say."
 ];
 
-function showDailyMessage() {
+// --------- Daily Message ---------
+function showDailyMessage(){
   const messageBox = document.getElementById('message');
   const now = new Date();
-  const start = new Date(now.getFullYear(),0,0);
-  const diff = now - start;
-  const dayOfYear = Math.floor(diff / (1000*60*60*24));
+  const dayOfYear = Math.floor((now - new Date(now.getFullYear(),0,0))/(1000*60*60*24));
+  const hour = now.getHours();
+  let greeting = '';
+  if(hour<12) greeting='Good morning, my love! ';
+  else if(hour<18) greeting='Good afternoon, my love! ';
+  else greeting='Good evening, my love! ';
   const index = dayOfYear % messages.length;
 
   messageBox.style.opacity=0;
-  setTimeout(()=> {
-    messageBox.textContent = messages[index];
+  setTimeout(()=>{
+    messageBox.textContent = greeting + messages[index];
     messageBox.style.opacity=1;
     triggerConfetti();
   },300);
-
-  const angle = (dayOfYear*37)%360;
-  document.body.style.background = `linear-gradient(${angle}deg,#0B3D91,#1E3B70)`;
 }
 
-function triggerConfetti() {
+// --------- Confetti ---------
+function triggerConfetti(){
   for(let i=0;i<30;i++){
     const confetti=document.createElement('div');
     confetti.classList.add('confetti');
@@ -245,7 +297,7 @@ function triggerConfetti() {
   }
 }
 
-// Floating hearts
+// --------- Floating hearts ---------
 setInterval(()=>{
   const heart=document.createElement('div');
   heart.classList.add('heart');
@@ -257,7 +309,7 @@ setInterval(()=>{
   setTimeout(()=>heart.remove(),7000);
 },500);
 
-// Sparkles
+// --------- Sparkles ---------
 setInterval(()=>{
   const sparkle=document.createElement('div');
   sparkle.classList.add('sparkle');
@@ -269,7 +321,7 @@ setInterval(()=>{
   setTimeout(()=>sparkle.remove(),2000);
 },300);
 
-// Secret heart
+// --------- Secret Heart ---------
 const secretHeart=document.getElementById('secretHeart');
 function moveSecretHeart(){
   secretHeart.style.left=Math.random()*(window.innerWidth-40)+'px';
@@ -279,12 +331,9 @@ setInterval(moveSecretHeart,3000);
 moveSecretHeart();
 
 secretHeart.addEventListener('click',()=>{
-  const now = new Date();
-  const start = new Date(now.getFullYear(),0,0);
-  const diff = now-start;
-  const dayOfYear = Math.floor(diff/(1000*60*60*24));
-  const index = dayOfYear % secretMessages.length;
-
+  const now=new Date();
+  const dayOfYear=Math.floor((now-new Date(now.getFullYear(),0,0))/(1000*60*60*24));
+  const index=dayOfYear % secretMessages.length;
   const messageBox=document.getElementById('message');
   messageBox.style.opacity=0;
   setTimeout(()=>{
@@ -294,7 +343,7 @@ secretHeart.addEventListener('click',()=>{
   },300);
 });
 
-// Image carousel
+// --------- Image Carousel ---------
 const carouselImages=document.querySelectorAll('#carousel img');
 let current=0;
 setInterval(()=>{
@@ -302,6 +351,15 @@ setInterval(()=>{
   current=(current+1)%carouselImages.length;
   carouselImages[current].classList.add('active');
 },5000);
+
+// --------- Mood Tracker ---------
+function moodResponse(mood){
+  const moodMsg=document.getElementById('mood-message');
+  if(mood==='happy') moodMsg.textContent="Your smile lights up my world! 💖";
+  else if(mood==='love') moodMsg.textContent="I feel your love every moment! 🌹";
+  else if(mood==='cozy') moodMsg.textContent="Let's cuddle and enjoy the warmth together ☕💙";
+}
+
 </script>
 </body>
 </html>
