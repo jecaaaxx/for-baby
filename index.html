@@ -3,274 +3,267 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Magical Love Site</title>
+<title>Our Little Universe 💙</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&family=Pacifico&family=Sacramento&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-/* --------- Body & Background --------- */
-body {
+/* ================== ROOT ================== */
+:root{
+  --navy:#1f2a44;
+  --soft-blue:#cfd9f3;
+  --pastel:#f6f8ff;
+  --glow:#6fa8ff;
+}
+
+/* ================== BODY ================== */
+body{
   margin:0;
-  padding:0;
   font-family: 'Playfair Display', serif;
-  overflow-x:hidden;
-  overflow-y:auto;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  background: linear-gradient(180deg,var(--pastel),#ffffff);
+  color:var(--navy);
   text-align:center;
-  background: #fdf7f4; /* soft pastel */
-  color:#2a3b4d;
+  overflow-x:hidden;
 }
 
-/* --------- Heading --------- */
-h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size:3em;
-  margin-top:40px;
-  color:#3b4d6b;
+/* iOS Emoji Look */
+*{
+  font-family: 'Playfair Display', serif, -apple-system, BlinkMacSystemFont;
 }
 
-/* --------- Daily Message --------- */
-#message {
-  font-family: 'Sacramento', cursive;
-  font-size:1.8em;
-  padding:30px;
-  max-width:600px;
-  width:85%;
-  border-radius:20px;
-  background: rgba(255,255,255,0.6);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  margin:40px 0;
+/* ================== HEADER ================== */
+h1{
+  font-family:'Great Vibes', cursive;
+  font-size:3.2em;
+  margin:40px 0 10px;
+  color:var(--navy);
+}
+
+.subtitle{
+  font-size:1.1em;
+  opacity:.8;
+}
+
+/* ================== CARD ================== */
+.card{
+  background:rgba(255,255,255,0.8);
+  border-radius:25px;
+  padding:25px;
+  margin:30px auto;
+  max-width:700px;
+  box-shadow:0 10px 30px rgba(31,42,68,.1);
+}
+
+/* ================== DAILY MESSAGE ================== */
+#message{
+  font-family:'Great Vibes', cursive;
+  font-size:1.9em;
   min-height:120px;
   display:flex;
   align-items:center;
   justify-content:center;
-  transition: all 0.5s ease, box-shadow 0.8s ease;
-}
-#message:hover {
-  box-shadow: 0 0 20px rgba(59,77,107,0.5);
-  transform: scale(1.02);
 }
 
-/* --------- Buttons --------- */
-button {
-  font-family: 'Pacifico', cursive;
-  background-color:#cce0f4;
-  color:#2a3b4d;
+button{
+  background:var(--navy);
+  color:white;
   border:none;
-  padding:12px 30px;
-  font-size:1.1em;
-  border-radius:25px;
-  cursor:pointer;
-  transition: all 0.3s ease, box-shadow 0.5s ease;
-  margin:10px;
-}
-button:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 15px rgba(59,77,107,0.5);
-}
-
-/* --------- Footer --------- */
-footer {
-  margin:40px 0;
-  font-size:0.9em;
-  color:#7d8a99;
-}
-
-/* --------- Carousel --------- */
-#carousel{
-  margin-top:20px;
-  max-width:80%;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 4px 15px rgba(0,0,0,0.1);
-  cursor:pointer;
-}
-#carousel img{
-  width:100%;
-  display:none;
-  border-radius:15px;
-}
-#carousel img.active{
-  display:block;
-}
-
-/* --------- Mini Game / Interactive Section --------- */
-#game-area {
-  margin:30px 0;
-  padding:20px;
-  border-radius:20px;
-  background: rgba(204,224,244,0.5);
-  max-width:600px;
-  width:85%;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-#game-area p{
-  font-size:1.2em;
-  margin-bottom:15px;
-}
-
-/* --------- Mood Tracker --------- */
-#mood-box{
-  margin-top:20px;
-  padding:20px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.6);
-  box-shadow:0 4px 15px rgba(0,0,0,0.05);
-}
-#mood-box button{
-  margin:5px;
-  padding:10px 20px;
-  border-radius:20px;
+  padding:12px 28px;
+  border-radius:30px;
   font-size:1em;
+  cursor:pointer;
+  margin:10px;
+  transition:.3s;
+}
+button:hover{
+  background:var(--glow);
+  transform:scale(1.05);
 }
 
-/* --------- Floating Hearts / Sparkles / Confetti --------- */
-.heart, .sparkle, .confetti{
+/* ================== FLOATING HEARTS ================== */
+.heart{
   position:fixed;
-  pointer-events:none;
+  width:20px;
+  height:20px;
+  background:#ff6b81;
+  transform:rotate(-45deg);
+  animation:floatUp linear forwards;
+}
+.heart::before,.heart::after{
+  content:"";
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:#ff6b81;
   border-radius:50%;
 }
-.heart {
-  width:20px; height:20px; background:#ff6b6b; transform:rotate(-45deg);
+.heart::before{top:-10px;}
+.heart::after{left:10px;}
+
+@keyframes floatUp{
+  from{transform:translateY(0) rotate(-45deg);opacity:1;}
+  to{transform:translateY(-100vh) rotate(-45deg);opacity:0;}
 }
-.heart::before,.heart::after{content:""; position:absolute; width:20px; height:20px; background:#ff6b6b; border-radius:50%;}
-.heart::before{top:-10px; left:0;} .heart::after{left:10px; top:0;}
-.sparkle{width:5px;height:5px;background:#FFD700; opacity:0.7;}
-.confetti{width:8px;height:8px;background:#FFD700;}
+
+/* ================== MEMORY GAME ================== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  max-width:320px;
+  margin:20px auto;
+}
+.tile{
+  background:var(--soft-blue);
+  border-radius:15px;
+  padding:20px;
+  font-size:1.5em;
+  cursor:pointer;
+}
+.tile.matched{
+  background:var(--glow);
+  color:white;
+}
+
+/* ================== CATCH GAME ================== */
+#catchArea{
+  position:relative;
+  height:200px;
+  border-radius:20px;
+  background:var(--soft-blue);
+  overflow:hidden;
+}
+#catchHeart{
+  position:absolute;
+  font-size:2em;
+  cursor:pointer;
+}
+
+/* ================== FOOTER ================== */
+footer{
+  margin:40px 0;
+  font-size:.9em;
+  opacity:.6;
+}
 </style>
 </head>
+
 <body>
 
-<h1>Magical Love Site</h1>
+<h1>Our Little Universe 💙</h1>
+<div class="subtitle">Everything here exists just for us ✨</div>
 
-<div id="message">Press the button to reveal today's message.</div>
-<button onclick="showDailyMessage()">Reveal Today’s Message</button>
-
-<!-- Spotify Embed -->
-<div id="spotify-player" style="margin:30px 0;">
-  <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX7YNlvohZCq6" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+<!-- DAILY MESSAGE -->
+<div class="card">
+  <div id="message">Tap to reveal today’s love note 💌</div>
+  <button onclick="dailyMessage()">Reveal</button>
 </div>
 
-<!-- Clickable Photo Carousel -->
-<div id="carousel">
-  <img src="images/pic1.jpg" class="active" alt="Photo 1" onclick="alert('Memory: Our first date!')">
-  <img src="images/pic2.jpg" alt="Photo 2" onclick="alert('Memory: Vacation together')">
-  <img src="images/pic3.jpg" alt="Photo 3" onclick="alert('Memory: Cozy evening at home')">
+<!-- MEMORY GAME -->
+<div class="card">
+  <h2>💞 Memory of Us</h2>
+  <p>Match the hearts</p>
+  <div class="grid" id="memoryGame"></div>
 </div>
 
-<!-- Mini Game / Interactive Section -->
-<div id="game-area">
-  <p>Click the floating stars or hearts to reveal secret love messages!</p>
-</div>
-
-<!-- Mood Tracker -->
-<div id="mood-box">
-  How are you feeling today?
-  <div>
-    <button onclick="moodResponse('happy')">Happy</button>
-    <button onclick="moodResponse('love')">In Love</button>
-    <button onclick="moodResponse('cozy')">Cozy</button>
+<!-- CATCH GAME -->
+<div class="card">
+  <h2>💘 Catch the Love</h2>
+  <p>Tap the moving heart!</p>
+  <div id="catchArea">
+    <div id="catchHeart">❤️</div>
   </div>
-  <div id="mood-message" style="margin-top:10px;"></div>
+  <div id="score">Score: 0</div>
 </div>
 
-<!-- Secret Heart -->
-<div id="secretHeart" title="Click me!"></div>
-
-<footer>Made with love, just for you</footer>
+<footer>Made with love, always 💙</footer>
 
 <script>
-// Messages
+/* ================= DAILY MESSAGE ================= */
 const messages=[
-  "Every moment with you makes me smile.",
-  "You make my world brighter every day.",
-  "Being with you feels like home.",
-  "I love spending time with you more than anything.",
-  "You are my favorite part of every day."
-];
-const secretMessages=[
-  "You are my secret treasure.",
-  "Thinking of you makes my heart race.",
-  "You are my sweetest secret.",
-  "A little surprise, just for you."
+  "You are my safest place 💙",
+  "Every day with you is my favorite",
+  "I choose you, always",
+  "Loving you feels like magic ✨",
+  "You are my forever"
 ];
 
-// Daily Message
-function showDailyMessage(){
-  const messageBox=document.getElementById('message');
-  const now=new Date();
-  const day=Math.floor((now-new Date(now.getFullYear(),0,0))/(1000*60*60*24));
-  const index=day%messages.length;
-  messageBox.style.opacity=0;
-  setTimeout(()=>{
-    messageBox.textContent=messages[index];
-    messageBox.style.opacity=1;
-    triggerConfetti();
-  },300);
+function dailyMessage(){
+  const box=document.getElementById('message');
+  const msg=messages[Math.floor(Math.random()*messages.length)];
+  box.textContent=msg;
+  spawnHearts();
 }
 
-// Confetti
-function triggerConfetti(){
-  for(let i=0;i<30;i++){
-    const c=document.createElement('div');
-    c.classList.add('confetti');
-    c.style.left=Math.random()*window.innerWidth+'px';
-    c.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`;
-    c.style.animationDuration=(2+Math.random()*2)+'s';
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),2000);
+/* ================= FLOATING HEARTS ================= */
+function spawnHearts(){
+  for(let i=0;i<20;i++){
+    const h=document.createElement('div');
+    h.className='heart';
+    h.style.left=Math.random()*innerWidth+'px';
+    h.style.bottom='-20px';
+    h.style.animationDuration=(3+Math.random()*3)+'s';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
   }
 }
 
-// Floating Hearts
-setInterval(()=>{
-  const h=document.createElement('div');
-  h.classList.add('heart');
-  h.style.left=Math.random()*window.innerWidth+'px';
-  h.style.top=window.innerHeight+'px';
-  h.style.setProperty('--randX', Math.random());
-  h.style.animationDuration=(4+Math.random()*3)+'s';
-  h.addEventListener('click',()=>{
-    const index=Math.floor(Math.random()*secretMessages.length);
-    alert(secretMessages[index]);
-  });
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),7000);
-},800);
+/* ================= MEMORY GAME ================= */
+const emojis=["💙","💙","💞","💞","💕","💕","❤️","❤️"];
+let first=null,lock=false;
 
-// Secret Heart
-const secretHeart=document.getElementById('secretHeart');
-function moveSecretHeart(){
-  secretHeart.style.left=Math.random()*(window.innerWidth-40)+'px';
-  secretHeart.style.top=Math.random()*(window.innerHeight-40)+'px';
-}
-setInterval(moveSecretHeart,3000);
-moveSecretHeart();
-secretHeart.addEventListener('click',()=>{
-  const index=Math.floor(Math.random()*secretMessages.length);
-  alert(secretMessages[index]);
-  triggerConfetti();
+const grid=document.getElementById('memoryGame');
+emojis.sort(()=>0.5-Math.random()).forEach(e=>{
+  const tile=document.createElement('div');
+  tile.className='tile';
+  tile.textContent="❔";
+  tile.dataset.emoji=e;
+
+  tile.onclick=()=>{
+    if(lock||tile.classList.contains('matched'))return;
+    tile.textContent=e;
+
+    if(!first){
+      first=tile;
+    }else{
+      lock=true;
+      if(first.dataset.emoji===e){
+        tile.classList.add('matched');
+        first.classList.add('matched');
+        first=null;
+        lock=false;
+      }else{
+        setTimeout(()=>{
+          tile.textContent="❔";
+          first.textContent="❔";
+          first=null;
+          lock=false;
+        },700);
+      }
+    }
+  };
+  grid.appendChild(tile);
 });
 
-// Carousel
-const carouselImages=document.querySelectorAll('#carousel img');
-let current=0;
-setInterval(()=>{
-  carouselImages[current].classList.remove('active');
-  current=(current+1)%carouselImages.length;
-  carouselImages[current].classList.add('active');
-},5000);
+/* ================= CATCH GAME ================= */
+const heart=document.getElementById('catchHeart');
+const area=document.getElementById('catchArea');
+let score=0;
 
-// Mood Tracker
-function moodResponse(mood){
-  const moodMsg=document.getElementById('mood-message');
-  if(mood==='happy') moodMsg.textContent="Your smile lights up my world.";
-  else if(mood==='love') moodMsg.textContent="I feel your love every moment.";
-  else if(mood==='cozy') moodMsg.textContent="Let's enjoy some cozy time together.";
+function moveHeart(){
+  heart.style.left=Math.random()*(area.clientWidth-40)+'px';
+  heart.style.top=Math.random()*(area.clientHeight-40)+'px';
 }
+setInterval(moveHeart,800);
+
+heart.onclick=()=>{
+  score++;
+  document.getElementById('score').textContent="Score: "+score;
+  spawnHearts();
+  moveHeart();
+};
 </script>
+
 </body>
 </html>
