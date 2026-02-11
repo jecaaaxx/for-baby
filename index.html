@@ -3,135 +3,144 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Little Universe 💙</title>
+<title>Magical Love Site</title>
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&family=Pacifico&family=Sacramento&display=swap" rel="stylesheet">
 
 <style>
-/* ================== ROOT ================== */
+
+/* ================= COLORS ================= */
 :root{
   --navy:#1f2a44;
-  --soft-blue:#cfd9f3;
-  --pastel:#f6f8ff;
-  --glow:#6fa8ff;
+  --soft:#f4f7ff;
+  --blue:#cfe0ff;
+  --accent:#6fa8ff;
 }
 
-/* ================== BODY ================== */
+/* ================= BODY ================= */
 body{
   margin:0;
-  font-family: 'Playfair Display', serif;
-  background: linear-gradient(180deg,var(--pastel),#ffffff);
+  font-family:'Playfair Display', serif, -apple-system;
+  background:linear-gradient(180deg,var(--soft),#fff);
   color:var(--navy);
   text-align:center;
-  overflow-x:hidden;
 }
 
-/* iOS Emoji Look */
-*{
-  font-family: 'Playfair Display', serif, -apple-system, BlinkMacSystemFont;
-}
-
-/* ================== HEADER ================== */
+/* ================= TITLE ================= */
 h1{
   font-family:'Great Vibes', cursive;
-  font-size:3.2em;
-  margin:40px 0 10px;
+  font-size:3em;
+  margin-top:40px;
   color:var(--navy);
 }
 
 .subtitle{
-  font-size:1.1em;
-  opacity:.8;
+  opacity:.7;
+  font-size:1em;
 }
 
-/* ================== CARD ================== */
+/* ================= CARDS ================= */
 .card{
-  background:rgba(255,255,255,0.8);
-  border-radius:25px;
+  background:rgba(255,255,255,.9);
   padding:25px;
-  margin:30px auto;
+  border-radius:25px;
   max-width:700px;
-  box-shadow:0 10px 30px rgba(31,42,68,.1);
+  margin:30px auto;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
 }
 
-/* ================== DAILY MESSAGE ================== */
+/* ================= MESSAGE ================= */
 #message{
-  font-family:'Great Vibes', cursive;
-  font-size:1.9em;
-  min-height:120px;
+  font-family:'Sacramento', cursive;
+  font-size:1.7em;
+  min-height:100px;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
 }
 
+/* ================= BUTTON ================= */
 button{
   background:var(--navy);
   color:white;
   border:none;
-  padding:12px 28px;
-  border-radius:30px;
-  font-size:1em;
+  padding:12px 26px;
+  border-radius:25px;
   cursor:pointer;
-  margin:10px;
   transition:.3s;
 }
 button:hover{
-  background:var(--glow);
+  background:var(--accent);
   transform:scale(1.05);
 }
 
-/* ================== FLOATING HEARTS ================== */
+/* ================= CAROUSEL ================= */
+#carousel{
+  max-width:80%;
+  margin:20px auto;
+  border-radius:20px;
+  overflow:hidden;
+}
+#carousel img{
+  width:100%;
+  display:none;
+}
+#carousel img.active{
+  display:block;
+}
+
+/* ================= HEARTS ================= */
 .heart{
   position:fixed;
-  width:20px;
-  height:20px;
-  background:#ff6b81;
+  width:18px;
+  height:18px;
+  background:#ff6b6b;
   transform:rotate(-45deg);
   animation:floatUp linear forwards;
 }
 .heart::before,.heart::after{
   content:"";
   position:absolute;
-  width:20px;
-  height:20px;
-  background:#ff6b81;
+  width:18px;
+  height:18px;
+  background:#ff6b6b;
   border-radius:50%;
 }
-.heart::before{top:-10px;}
-.heart::after{left:10px;}
+.heart::before{top:-9px;}
+.heart::after{left:9px;}
 
 @keyframes floatUp{
   from{transform:translateY(0) rotate(-45deg);opacity:1;}
   to{transform:translateY(-100vh) rotate(-45deg);opacity:0;}
 }
 
-/* ================== MEMORY GAME ================== */
+/* ================= MEMORY GAME ================= */
 .grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:10px;
-  max-width:320px;
+  max-width:300px;
   margin:20px auto;
 }
 .tile{
-  background:var(--soft-blue);
-  border-radius:15px;
-  padding:20px;
-  font-size:1.5em;
+  background:var(--blue);
+  border-radius:12px;
+  padding:18px;
+  font-size:1.4em;
   cursor:pointer;
 }
 .tile.matched{
-  background:var(--glow);
+  background:var(--accent);
   color:white;
 }
 
-/* ================== CATCH GAME ================== */
+/* ================= CATCH GAME ================= */
 #catchArea{
   position:relative;
-  height:200px;
-  border-radius:20px;
-  background:var(--soft-blue);
+  height:180px;
+  background:var(--blue);
+  border-radius:15px;
   overflow:hidden;
 }
 #catchHeart{
@@ -140,65 +149,101 @@ button:hover{
   cursor:pointer;
 }
 
-/* ================== FOOTER ================== */
+/* ================= MOOD ================= */
+#mood-box button{
+  margin:5px;
+  font-size:.9em;
+}
+
+/* ================= FOOTER ================= */
 footer{
   margin:40px 0;
-  font-size:.9em;
   opacity:.6;
+  font-size:.9em;
 }
+
 </style>
 </head>
 
 <body>
 
-<h1>Our Little Universe 💙</h1>
-<div class="subtitle">Everything here exists just for us ✨</div>
+<h1>Magical Love Site</h1>
+<div class="subtitle">A small place for memories and moments</div>
 
 <!-- DAILY MESSAGE -->
 <div class="card">
-  <div id="message">Tap to reveal today’s love note 💌</div>
-  <button onclick="dailyMessage()">Reveal</button>
+  <div id="message">Tap to see today’s message</div>
+  <button onclick="showDailyMessage()">Reveal</button>
+</div>
+
+<!-- SPOTIFY -->
+<div class="card">
+  <h3>Music</h3>
+  <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX7YNlvohZCq6"
+  width="300" height="80" frameborder="0"
+  allow="encrypted-media"></iframe>
+</div>
+
+<!-- CAROUSEL -->
+<div class="card">
+  <h3>Photos</h3>
+  <div id="carousel">
+    <img src="images/pic1.jpg" class="active">
+    <img src="images/pic2.jpg">
+    <img src="images/pic3.jpg">
+  </div>
 </div>
 
 <!-- MEMORY GAME -->
 <div class="card">
-  <h2>💞 Memory of Us</h2>
-  <p>Match the hearts</p>
-  <div class="grid" id="memoryGame"></div>
+  <h3>Memory Game</h3>
+  <p>Match the pairs</p>
+  <div class="grid" id="memory"></div>
 </div>
 
 <!-- CATCH GAME -->
 <div class="card">
-  <h2>💘 Catch the Love</h2>
-  <p>Tap the moving heart!</p>
+  <h3>Reaction Game</h3>
+  <p>Tap the heart</p>
   <div id="catchArea">
     <div id="catchHeart">❤️</div>
   </div>
   <div id="score">Score: 0</div>
 </div>
 
-<footer>Made with love, always 💙</footer>
+<!-- MOOD -->
+<div class="card" id="mood-box">
+  <h3>Today’s Mood</h3>
+  <button onclick="mood('good')">Good</button>
+  <button onclick="mood('tired')">Tired</button>
+  <button onclick="mood('calm')">Calm</button>
+
+  <div id="mood-message"></div>
+</div>
+
+<footer>Made with care</footer>
 
 <script>
-/* ================= DAILY MESSAGE ================= */
+
+/* ============ MESSAGES ============ */
 const messages=[
-  "You are my safest place 💙",
-  "Every day with you is my favorite",
-  "I choose you, always",
-  "Loving you feels like magic ✨",
-  "You are my forever"
+  "Hope today treats you well.",
+  "Thinking of you today.",
+  "Glad to share this time with you.",
+  "One day at a time, together.",
+  "Always grateful for you."
 ];
 
-function dailyMessage(){
+function showDailyMessage(){
   const box=document.getElementById('message');
   const msg=messages[Math.floor(Math.random()*messages.length)];
   box.textContent=msg;
-  spawnHearts();
+  hearts();
 }
 
-/* ================= FLOATING HEARTS ================= */
-function spawnHearts(){
-  for(let i=0;i<20;i++){
+/* ============ HEARTS ============ */
+function hearts(){
+  for(let i=0;i<15;i++){
     const h=document.createElement('div');
     h.className='heart';
     h.style.left=Math.random()*innerWidth+'px';
@@ -209,61 +254,85 @@ function spawnHearts(){
   }
 }
 
-/* ================= MEMORY GAME ================= */
-const emojis=["💙","💙","💞","💞","💕","💕","❤️","❤️"];
+/* ============ CAROUSEL ============ */
+const imgs=document.querySelectorAll('#carousel img');
+let cur=0;
+
+setInterval(()=>{
+  imgs[cur].classList.remove('active');
+  cur=(cur+1)%imgs.length;
+  imgs[cur].classList.add('active');
+},4000);
+
+/* ============ MEMORY GAME ============ */
+const icons=["💙","💙","💕","💕","❤️","❤️","💫","💫"];
 let first=null,lock=false;
 
-const grid=document.getElementById('memoryGame');
-emojis.sort(()=>0.5-Math.random()).forEach(e=>{
-  const tile=document.createElement('div');
-  tile.className='tile';
-  tile.textContent="❔";
-  tile.dataset.emoji=e;
+const grid=document.getElementById('memory');
 
-  tile.onclick=()=>{
-    if(lock||tile.classList.contains('matched'))return;
-    tile.textContent=e;
+icons.sort(()=>0.5-Math.random()).forEach(e=>{
+  const t=document.createElement('div');
+  t.className='tile';
+  t.textContent='?';
+  t.dataset.v=e;
+
+  t.onclick=()=>{
+    if(lock||t.classList.contains('matched'))return;
+
+    t.textContent=e;
 
     if(!first){
-      first=tile;
+      first=t;
     }else{
       lock=true;
-      if(first.dataset.emoji===e){
-        tile.classList.add('matched');
+
+      if(first.dataset.v===e){
+        t.classList.add('matched');
         first.classList.add('matched');
         first=null;
         lock=false;
       }else{
         setTimeout(()=>{
-          tile.textContent="❔";
-          first.textContent="❔";
+          t.textContent='?';
+          first.textContent='?';
           first=null;
           lock=false;
-        },700);
+        },600);
       }
     }
   };
-  grid.appendChild(tile);
+
+  grid.appendChild(t);
 });
 
-/* ================= CATCH GAME ================= */
+/* ============ CATCH GAME ============ */
 const heart=document.getElementById('catchHeart');
 const area=document.getElementById('catchArea');
 let score=0;
 
-function moveHeart(){
-  heart.style.left=Math.random()*(area.clientWidth-40)+'px';
-  heart.style.top=Math.random()*(area.clientHeight-40)+'px';
+function move(){
+  heart.style.left=Math.random()*(area.clientWidth-30)+'px';
+  heart.style.top=Math.random()*(area.clientHeight-30)+'px';
 }
-setInterval(moveHeart,800);
+
+setInterval(move,900);
 
 heart.onclick=()=>{
   score++;
   document.getElementById('score').textContent="Score: "+score;
-  spawnHearts();
-  moveHeart();
+  hearts();
+  move();
 };
-</script>
 
+/* ============ MOOD ============ */
+function mood(m){
+  const box=document.getElementById('mood-message');
+
+  if(m==='good') box.textContent="Glad to hear that.";
+  if(m==='tired') box.textContent="Hope you get some rest.";
+  if(m==='calm') box.textContent="Sounds peaceful.";
+}
+
+</script>
 </body>
 </html>
