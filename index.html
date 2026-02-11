@@ -6,7 +6,6 @@
   <title>Daily Love Message</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
       min-height: 100vh;
@@ -14,9 +13,11 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
       background: linear-gradient(135deg, #0B3D91, #1E3B70);
-      color: #FFFFFF;
       transition: background 1s ease;
+      color: #fff;
     }
 
     h1 {
@@ -33,7 +34,7 @@
       max-width: 500px;
       text-align: center;
       border-radius: 25px;
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255,255,255,0.1);
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: all 0.5s ease;
       margin-bottom: 30px;
@@ -44,8 +45,8 @@
     }
 
     #message:hover {
-      transform: scale(1.02);
-      background-color: rgba(255, 255, 255, 0.15);
+      transform: scale(1.03);
+      background-color: rgba(255,255,255,0.15);
     }
 
     button {
@@ -71,6 +72,91 @@
       font-size: 0.9em;
       color: #C1DFF0;
     }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #FF6B6B;
+      transform: rotate(-45deg);
+      opacity: 0.7;
+      animation: floatUp linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #FF6B6B;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translate(0, 0) rotate(-45deg); opacity: 0.7; }
+      100% { transform: translate(calc(-50px + 100px * var(--randX)), -600px) rotate(-45deg); opacity: 0; }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #FFD700;
+      top: 0;
+      animation: fall 2s linear forwards;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
+    }
+
+    /* Hidden heart for secret message */
+    #secretHeart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: #FF6B6B;
+      transform: rotate(-45deg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    #secretHeart::before,
+    #secretHeart::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: #FF6B6B;
+      border-radius: 50%;
+    }
+
+    #secretHeart::before {
+      top: -15px;
+      left: 0;
+    }
+
+    #secretHeart::after {
+      left: 15px;
+      top: 0;
+    }
   </style>
 </head>
 <body>
@@ -78,6 +164,9 @@
   <div id="message">Press the button to see your message for today!</div>
   <button onclick="showDailyMessage()">Reveal Today’s Message</button>
   <footer>Made with love, just for you</footer>
+
+  <!-- Hidden heart for secret message -->
+  <div id="secretHeart" title="Click me!"></div>
 
   <script>
     const messages = [
@@ -93,29 +182,87 @@
       "I always look forward to seeing you."
     ];
 
+    const secretMessages = [
+      "You are my secret treasure.",
+      "Thinking of you makes my heart race.",
+      "You are my sweetest secret.",
+      "A little surprise, just for you.",
+      "I love you more than words can say."
+    ];
+
     function showDailyMessage() {
       const messageBox = document.getElementById('message');
 
-      // Calculate message index based on the day of the year
       const now = new Date();
       const start = new Date(now.getFullYear(), 0, 0);
       const diff = now - start;
       const oneDay = 1000 * 60 * 60 * 24;
       const dayOfYear = Math.floor(diff / oneDay);
-
       const index = dayOfYear % messages.length;
 
-      // Animate message fade
       messageBox.style.opacity = 0;
       setTimeout(() => {
         messageBox.textContent = messages[index];
         messageBox.style.opacity = 1;
+        triggerConfetti();
       }, 300);
 
-      // Optional: subtle background shift
-      const angle = (dayOfYear * 37) % 360; // rotates each day
+      const angle = (dayOfYear * 37) % 360;
       document.body.style.background = `linear-gradient(${angle}deg, #0B3D91, #1E3B70)`;
     }
+
+    function triggerConfetti() {
+      for (let i = 0; i < 30; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+        confetti.style.animationDuration = (2 + Math.random()*2) + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 2000);
+      }
+    }
+
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = window.innerHeight + 'px';
+      heart.style.setProperty('--randX', Math.random());
+      heart.style.animationDuration = (4 + Math.random()*3) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }, 500);
+
+    // Secret heart setup
+    const secretHeart = document.getElementById('secretHeart');
+
+    function moveSecretHeart() {
+      secretHeart.style.left = Math.random() * (window.innerWidth - 40) + 'px';
+      secretHeart.style.top = Math.random() * (window.innerHeight - 40) + 'px';
+    }
+
+    // Move the secret heart every 3 seconds
+    setInterval(moveSecretHeart, 3000);
+    moveSecretHeart();
+
+    secretHeart.addEventListener('click', () => {
+      const now = new Date();
+      const start = new Date(now.getFullYear(), 0, 0);
+      const diff = now - start;
+      const oneDay = 1000 * 60 * 60 * 24;
+      const dayOfYear = Math.floor(diff / oneDay);
+      const index = dayOfYear % secretMessages.length;
+
+      const messageBox = document.getElementById('message');
+      messageBox.style.opacity = 0;
+      setTimeout(() => {
+        messageBox.textContent = secretMessages[index];
+        messageBox.style.opacity = 1;
+        triggerConfetti();
+      }, 300);
+    });
   </script>
 </body>
 </html>
