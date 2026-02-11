@@ -3,47 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>💌 Love Message for You 💌</title>
+  <title>Love Message for You</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0B3D91; /* Navy blue background */
-      color: #FFFFFF; /* White text */
-      text-align: center;
-      padding: 50px;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0B3D91, #1E3B70);
+      color: #FFFFFF;
+      transition: background 0.5s ease;
     }
 
     h1 {
-      color: #AAD8FF; /* Lighter blue for title */
       font-size: 2.5em;
+      color: #A3C0F9;
+      margin-bottom: 40px;
+      text-align: center;
     }
 
     #message {
       font-size: 1.5em;
-      margin: 40px 0;
-      padding: 20px;
-      border: 2px solid #AAD8FF;
-      border-radius: 20px;
-      background-color: #0D1B2A; /* Darker navy box */
-      min-height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 30px;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+      border-radius: 25px;
+      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      margin-bottom: 30px;
+    }
+
+    #message:hover {
+      transform: scale(1.03);
+      background-color: rgba(255, 255, 255, 0.15);
     }
 
     button {
-      background-color: #AAD8FF;
+      background-color: #A3C0F9;
       color: #0B3D91;
       border: none;
-      padding: 15px 30px;
+      padding: 15px 35px;
       font-size: 1.2em;
-      border-radius: 15px;
+      border-radius: 20px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: transform 0.2s ease, background-color 0.2s ease;
     }
 
     button:hover {
-      background-color: #7FB3FF;
+      transform: scale(1.1);
+      background-color: #7FA7E9;
     }
 
     footer {
@@ -54,29 +68,39 @@
   </style>
 </head>
 <body>
-  <h1>💌 A Special Love Message for You 💌</h1>
-  <div id="message">Click the button to see a surprise message! 💙</div>
-  <button onclick="generateMessage()">Show Me 💖</button>
-
-  <footer>Made with ❤️ just for you</footer>
+  <h1>A Special Message for You</h1>
+  <div id="message">Click the button to see something sweet!</div>
+  <button onclick="generateMessage()">Reveal Message</button>
+  <footer>Made with love</footer>
 
   <script>
     const messages = [
-      "Every moment with you is my favorite 💕",
-      "You make my heart smile every day 😍",
-      "I love you more than all the stars in the sky ✨",
-      "Being with you feels like home 🏡💖",
-      "You’re my favorite hello and my hardest goodbye 💌",
-      "Every day with you is my new best day 🌸",
-      "I love you to the moon and back 🌙💙",
-      "You make my world brighter just by being in it ☀️💙",
-      "I’m so lucky to call you mine 🍀❤️",
-      "You’re my happy place and my safe space 💙"
+      "Every moment with you makes me smile.",
+      "You make my world brighter every day.",
+      "Being with you feels like home.",
+      "I love spending time with you more than anything.",
+      "You are my favorite part of every day.",
+      "Your presence makes everything better.",
+      "I feel so lucky to have you in my life.",
+      "Being around you makes me happy in ways words can't describe.",
+      "You are my calm, my joy, my everything.",
+      "I always look forward to seeing you."
     ];
 
     function generateMessage() {
+      // Pick a random message
       const randomIndex = Math.floor(Math.random() * messages.length);
-      document.getElementById('message').textContent = messages[randomIndex];
+      const messageBox = document.getElementById('message');
+      // Animate fade-out and fade-in for a cute effect
+      messageBox.style.opacity = 0;
+      setTimeout(() => {
+        messageBox.textContent = messages[randomIndex];
+        messageBox.style.opacity = 1;
+      }, 300);
+
+      // Optional: subtly shift background gradient
+      const angle = Math.floor(Math.random() * 360);
+      document.body.style.background = `linear-gradient(${angle}deg, #0B3D91, #1E3B70)`;
     }
   </script>
 </body>
